@@ -82,34 +82,36 @@ export default function HeroScroll() {
       <BackgroundWave color="#758bee" opacity={0.45} strokeWidth={3} speed={7} amplitude={30} bottomOffset="24%" />
 
       <div className="relative z-10 flex flex-col items-center gap-6 px-8 text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="font-body text-[#c9cef4] tracking-[0.4em] text-xs uppercase"
-        >
-          Available for new projects
-        </motion.p>
-
-        {/* Title — typewriter reveal */}
-        <div className="flex items-center justify-center flex-wrap leading-none">
-          {TITLE.split("").map((char, i) => (
-            <motion.span
-              key={i}
-              className="font-heading font-bold inline-block"
-              style={{
-                color: "#ffffff",
-                fontSize: "clamp(3rem, 9vw, 9rem)",
-                lineHeight: 1,
-                whiteSpace: char === " " ? "pre" : "normal",
-              }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: INITIAL_DELAY + i * STAGGER, duration: 0.01 }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          ))}
+        {/* Title — typewriter reveal, words wrap as units */}
+        <div className="flex items-center justify-center flex-wrap gap-x-[2.5vw] leading-none">
+          {(() => {
+            let charIndex = 0;
+            return TITLE.split(" ").map((word, wordIdx) => {
+              if (wordIdx > 0) charIndex++; // account for space
+              const wordStart = charIndex;
+              charIndex += word.length;
+              return (
+                <span key={wordIdx} className="whitespace-nowrap inline-flex">
+                  {word.split("").map((char, i) => (
+                    <motion.span
+                      key={i}
+                      className="font-heading font-bold inline-block"
+                      style={{
+                        color: "#ffffff",
+                        fontSize: "clamp(2.2rem, 9vw, 9rem)",
+                        lineHeight: 1,
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: INITIAL_DELAY + (wordStart + i) * STAGGER, duration: 0.01 }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+              );
+            });
+          })()}
         </div>
 
         {/* Subtitle — fades in after wave completes */}
@@ -118,7 +120,7 @@ export default function HeroScroll() {
           animate={showSubtitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="font-heading font-bold text-[#e880e5]"
-          style={{ fontSize: "clamp(1.1rem, 3.5vw, 3rem)" }}
+          style={{ fontSize: "clamp(0.95rem, 3.5vw, 3rem)" }}
         >
           CUSTOMIZED WEBSITES
         </motion.p>
@@ -128,17 +130,17 @@ export default function HeroScroll() {
           initial={{ opacity: 0, y: 16 }}
           animate={showSubtitle ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row gap-4 mt-2"
+          className="flex flex-col sm:flex-row gap-3 mt-2 w-full px-4 sm:px-0 sm:w-auto"
         >
           <a
             href="#work"
-            className="font-heading tracking-widest text-sm px-8 py-4 bg-[#e880e5] text-white hover:bg-[#758bee] transition-all duration-300 hover:scale-105 inline-block"
+            className="font-heading tracking-widest text-sm px-6 py-3 bg-[#e880e5] text-white hover:bg-[#758bee] transition-all duration-300 hover:scale-105 inline-block text-center"
           >
             SEE MY WORK
           </a>
           <a
             href="#contact"
-            className="font-heading tracking-widest text-sm px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-[#27187e] transition-all duration-300 hover:scale-105 inline-block"
+            className="font-heading tracking-widest text-sm px-6 py-3 border-2 border-white text-white hover:bg-white hover:text-[#27187e] transition-all duration-300 hover:scale-105 inline-block text-center"
           >
             START A PROJECT
           </a>

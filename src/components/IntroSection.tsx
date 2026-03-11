@@ -4,14 +4,14 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const marqueeWords = [
-  "DESIGN", "·", "DEVELOP", "·", "IDEATE", "·", "LAUNCH", "·",
-  "BRAND", "·", "ANIMATE", "·", "ITERATE", "·", "SCALE", "·",
+  "DISCOVER", "·", "DESIGN", "·", "BUILD", "·",
+  "CUSTOMIZE", "·", "LAUNCH", "·", "SUPPORT", "·",
 ];
 
 function Marquee() {
   const items = [...marqueeWords, ...marqueeWords];
   return (
-    <div className="overflow-hidden border-t border-b border-[#c9cef4] py-4 my-14">
+    <div className="overflow-hidden border-t border-b border-[#c9cef4] py-4 my-8 md:my-14">
       <motion.div
         className="flex gap-8 whitespace-nowrap font-heading text-sm tracking-[0.3em]"
         animate={{ x: ["0%", "-50%"] }}
@@ -40,7 +40,7 @@ export default function IntroSection() {
       {/* Watermark */}
       <div
         className="absolute right-[-2vw] top-1/2 -translate-y-1/2 select-none pointer-events-none font-heading font-bold leading-none text-[#c9cef4]/20"
-        style={{ fontSize: "clamp(10rem, 28vw, 28rem)", whiteSpace: "nowrap" }}
+        style={{ fontSize: "clamp(6rem, 28vw, 28rem)", whiteSpace: "nowrap" }}
         aria-hidden
       >
         BUILD
@@ -71,9 +71,9 @@ export default function IntroSection() {
               initial={{ opacity: 0, x: line.align === "left" ? -60 : 60 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: 0.15 + i * 0.12, duration: 0.7, ease: "easeOut" }}
-              className={`block font-heading font-bold leading-none ${line.align === "right" ? "text-right" : "text-left"}`}
+              className={`block font-heading font-bold leading-none ${line.align === "right" ? "text-right" : "text-left"} ${i === 2 ? "mt-6 md:mt-0" : ""}`}
               style={{
-                fontSize: "clamp(3.5rem, 9.5vw, 9.5rem)",
+                fontSize: "clamp(2.2rem, 9.5vw, 9.5rem)",
                 color: line.color,
                 WebkitTextStroke: line.stroke ? "2px #758bee" : undefined,
               }}
@@ -91,7 +91,7 @@ export default function IntroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.7, duration: 0.7 }}
-          className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 pb-28"
+          className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10 pb-16 md:pb-28"
         >
           <div className="max-w-xl">
             <div className="w-12 h-1 bg-[#e880e5] mb-6" />
@@ -106,7 +106,7 @@ export default function IntroSection() {
           <motion.a
             href="#work"
             whileHover={{ scale: 1.04 }}
-            className="flex-shrink-0 inline-block font-heading tracking-widest text-sm px-8 py-4 bg-[#27187e] text-white hover:bg-[#e880e5] transition-colors duration-300"
+            className="flex-shrink-0 inline-block font-heading tracking-widest text-sm px-6 py-3 md:px-8 md:py-4 bg-[#27187e] text-white hover:bg-[#e880e5] transition-colors duration-300"
           >
             SEE THE WORK →
           </motion.a>

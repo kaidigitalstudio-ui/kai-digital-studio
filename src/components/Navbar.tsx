@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const links = ["Work", "About", "Services", "Contact"];
+const links = ["Work", "About", "Approach", "Testimonials", "Contact"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -81,7 +81,7 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="fixed inset-0 z-40 bg-[#27187e] flex flex-col items-center justify-center gap-10"
+            className="fixed inset-0 z-40 bg-[#27187e] flex flex-col items-center justify-center gap-6 sm:gap-10"
           >
             {links.map((link, i) => (
               <motion.a
@@ -91,7 +91,7 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08 }}
                 onClick={() => setMenuOpen(false)}
-                className="font-heading text-5xl text-white hover:text-[#e880e5] transition-colors"
+                className="font-heading text-3xl sm:text-5xl text-white hover:text-[#e880e5] transition-colors"
               >
                 {link}
               </motion.a>

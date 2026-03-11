@@ -16,7 +16,19 @@ const arimo = Arimo({
 
 export const metadata: Metadata = {
   title: "Kai Digital Studio",
-  description: "Designer & Web Developer — Creating bold digital experiences that move people.",
+  description: "Custom websites for small businesses & personal brands — visually stunning, user-friendly, and built to convert.",
+  openGraph: {
+    title: "Kai Digital Studio",
+    description: "Custom websites for small businesses & personal brands — visually stunning, user-friendly, and built to convert.",
+    url: "https://kai-digital-studio-livid.vercel.app",
+    siteName: "Kai Digital Studio",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kai Digital Studio",
+    description: "Custom websites for small businesses & personal brands — visually stunning, user-friendly, and built to convert.",
+  },
 };
 
 export default function RootLayout({
